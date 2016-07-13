@@ -1,0 +1,20 @@
+proxy:
+    image: jila/proxy:1.0
+    ports: 
+        - 80:80
+    net: "host"
+    environment:
+        DOMAIN_PORT_MAP: >
+            mamamia.dev           8080;
+            *.mamamia.dev         8080;
+            themotherish.dev      8081;
+            dev.ivillage.com.au   8081;
+            dev.themotherish.com  8081;
+            *.themotherish.dev    8081;
+            dev.theglow.com.au    8082;
+            theglow.dev           8082;
+            *.theglow.dev         8082;
+            debriefdaily.dev      8083;
+            *.debriefdaily.dev    8083;
+            dev.debriefdaily.com  8083;
+            www.debriefdaily.dev  8083;

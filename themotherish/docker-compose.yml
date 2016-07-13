@@ -1,0 +1,29 @@
+nginx:
+    image: jila/nginx:1.9
+    links: 
+        - php
+    ports:
+        - 8081:80
+    volumes:
+        - ../../../mwn-themotherish:/var/www
+    environment:
+        PHP_FPM: php:9000
+        DOCUMENT_ROOT: /var/www/bedrock/web # debriefdaily themotherish
+
+php: 
+    image: jila/php:5.6-fpm
+    volumes:
+        - ../../../mwn-themotherish:/var/www
+    links:
+        - database
+
+database:
+    image: mysql:5.6
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_USER: wordpress
+        MYSQL_PASSWORD: wordpress
+        MYSQL_DATABASE: wordpress
+    ports:
+        - 3306:3306
+
